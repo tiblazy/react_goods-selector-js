@@ -15,7 +15,7 @@ export const goods = [
   'Garlic',
 ];
 
-const Title = (selectedGood, setSelectedGood) => (
+const Title = ({ selectedGood, setSelectedGood }) => (
   <>
     {selectedGood !== '' ? `${selectedGood} is` : 'No goods'} selected
     {selectedGood !== '' && (
@@ -29,7 +29,7 @@ const Title = (selectedGood, setSelectedGood) => (
   </>
 );
 
-const Good = (selectedGood, setSelectedGood, good) => (
+const Good = ({ selectedGood, setSelectedGood, good }) => (
   <>
     <td>
       <button
@@ -56,7 +56,7 @@ export const App = () => {
   return (
     <main className="section container">
       <h1 className="title is-flex is-align-items-center">
-        {Title(selectedGood, setSelectedGood)}
+        <Title selectedGood={selectedGood} setSelectedGood={setSelectedGood} />
       </h1>
 
       <table className="table">
@@ -69,7 +69,11 @@ export const App = () => {
                 selectedGood === good && 'has-background-success-light'
               }
             >
-              {Good(selectedGood, setSelectedGood, good)}
+              <Good
+                selectedGood={selectedGood}
+                setSelectedGood={setSelectedGood}
+                good={good}
+              />
             </tr>
           ))}
         </tbody>
